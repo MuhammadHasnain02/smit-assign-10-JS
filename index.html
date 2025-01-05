@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaz Timing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="container">
+
+    <h2>Namaz Timmings Check</h2>
+    <br>
+    <label for="userCity">Enter City Name : <input type="text" id="userCity" placeholder="Enter City"></label>
+    <br><br><br>
+    <label for="userCountry">Enter Country Name : <input type="text" id="userCountry" placeholder="Enter Country"></label>
+    <br><br><br>
+    <button onclick="nmztimchk()" id="btncheck">Check</button>
+
+</div>
+
+<br><br>
+
+<table id="timeCont">
+
+    <tr>
+        <th id="mainName1">Namaz</th>
+        <th id="mainName2">Timmings</th>
+    </tr>
+    <tr>
+        <td id="namaz1">--</td>
+        <td id="time11">--</td>
+    </tr>
+    <tr>
+        <td id="namaz2">--</td>
+        <td id="time22">--</td>
+    </tr>
+    <tr>
+        <td id="namaz3">--</td>
+        <td id="time33">--</td>
+    </tr>
+    <tr>
+        <td id="namaz4">--</td>
+        <td id="time44">--</td>
+    </tr>
+    <tr>
+        <td id="namaz5">--</td>
+        <td id="time55">--</td>
+    </tr>
+
+</table>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        function convertTime(value){
+            let timeSplt = value.split(":");
+
+            if(timeSplt[0] > 12){
+                let convert1to12 = timeSplt[0] - 12;
+                return `${convert1to12} : ${timeSplt[1]} PM`
+            }
+            else if(timeSplt[0] == 12){
+                return `${value} PM`
+            }
+            else{
+                return `${value} AM`
+            }
+        }
+
+        function nmztimchk(){
+        
+        let city = document.getElementById("userCity").value
+        let country = document.getElementById("userCountry").value
+        
+        axios.get(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=1`)
+        
+        .then(function(response){
+            console.log(response.data.data)
+            
+                document.getElementById("namaz1").innerText = "Fajr"
+                document.getElementById("namaz2").innerText = "Dhuhr"
+                document.getElementById("namaz3").innerText = "Asr"
+                document.getElementById("namaz4").innerText = "Maghrib"
+                document.getElementById("namaz5").innerText = "Isha"
+                
+                document.getElementById("time11").innerText = convertTime(response.data.data.timings.Fajr)
+                document.getElementById("time22").innerText = convertTime(response.data.data.timings.Dhuhr)
+                document.getElementById("time33").innerText = convertTime(response.data.data.timings.Asr)
+                document.getElementById("time44").innerText = convertTime(response.data.data.timings.Maghrib)
+                document.getElementById("time55").innerText = convertTime(response.data.data.timings.Isha)
+            })
+        .catch(function(error){
+            console.log(error)
+        })
+    }
+    
+    </script>
+
+</body>
+</html>

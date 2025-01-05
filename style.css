@@ -1,0 +1,59 @@
+.container{
+    font-family: Arial;
+    color: white;
+    background-color: black;
+    text-align: center;
+    margin-left: 450px;
+    margin-right: 450px;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.container>h2{
+    color: rgb(0, 195, 255);
+}
+.container>h2:hover{
+    cursor: pointer;
+}
+
+.container>label>input{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#btncheck{
+    color: white;
+    background-color: rgb(8, 140, 180);
+    padding: 7px;
+    width: 100px;
+    border-radius: 15px;
+}
+#btncheck:hover{
+    transform: scale(1.1);
+    transition: all 1 ease-in-out;
+    cursor: pointer;
+}
+
+#timeCont{
+    color: white;
+    background-color: black;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 550px;
+    margin-right: 550px;
+}
+#timeCont>tr,th,td{
+    border: 2px solid white;
+    padding: 8px;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+}
+#timeCont>tr,th,td{
+    font-family: Arial;
+}
