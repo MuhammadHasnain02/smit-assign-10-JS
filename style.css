@@ -46,6 +46,7 @@
     justify-content: center;
     margin-left: 550px;
     margin-right: 550px;
+    border-spacing: 7px;
 }
 #timeCont>tr,th,td{
     border: 2px solid white;
